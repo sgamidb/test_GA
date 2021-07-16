@@ -96,18 +96,14 @@ jobs:
   post_deploy_uat:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    environment:
-      name: uat
     needs: [ deploy_uat_bu1, deploy_uat_bu2, deploy_uat_bu3 ]
     strategy:
       matrix: 
         modules: [ module1, module2, module3]
-    env:
-      bu: 'bu3'
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          echo "Déploiement en uat ${{ matrix.modules }} $bu1"
+          echo "Post déploiement uat"
