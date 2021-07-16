@@ -26,3 +26,4 @@ jobs:
         run: |
           echo "Debut du script"
           echo $GITHUB_REF
+          echo ${{ github.event.inputs.test_input }}
