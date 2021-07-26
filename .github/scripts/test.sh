@@ -2,5 +2,5 @@
 
 echo $GITHUB_REPOSITORY
 echo $GITHUB_SHA
-echo ${{ secrets.TTT }}
+echo $TTT
 exit 0
