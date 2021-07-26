@@ -18,6 +18,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           chmod +x .github/scripts/test.sh
+          .github/scripts/test.sh
           pwd
           ls -al
           exit 1;
