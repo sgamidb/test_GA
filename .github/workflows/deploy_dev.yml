@@ -17,6 +17,7 @@ jobs:
       - name: Run a one-line script
         run: |
           cd ${{ github.workspace }}
+          chmod +x .github/scripts/test.sh
           pwd
           ls -al
           exit 1;
