@@ -9,8 +9,6 @@ on:
         required: true
 
 jobs:
-  needs: build
-
   deploy:
     runs-on: ubuntu-latest
 
