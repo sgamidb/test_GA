@@ -1,5 +1,4 @@
 name: Child
-Deploy
 
 on:
   workflow_run:
