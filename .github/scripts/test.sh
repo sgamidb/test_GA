@@ -2,7 +2,7 @@ o#!/bin/bash
 
 pwd
 ls
-cat $GITHUB_ENV
+echo $RUN
 echo ${{ github.event.inputs.test_input }}
 echo $GITHUB_REPOSITORY
 echo $GITHUB_SHA
