@@ -23,6 +23,6 @@ jobs:
           .github/scripts/test.sh
           pwd
           ls -al
-          exit 1;
+
           echo "Debut du script"
           echo $GITHUB_REF
