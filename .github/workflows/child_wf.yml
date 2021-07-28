@@ -14,7 +14,7 @@ jobs:
       - env:
           RUN: ${{ github.event.workflow_run.conclusion }}
         run: |
-          chmod _x .github/scripts/test.sh
+          chmod +x .github/scripts/test.sh
           .github/scripts/test.sh
           if [ '${{ github.event.workflow_run.conclusion }}' == 'failure' ]; then exit 1; fi
           if [ -z ${{ github.event.workflow_run.conclusion }} ]; then echo "var is unset"; else echo "var is set to '$var'"; fi
