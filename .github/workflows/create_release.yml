@@ -1,0 +1,51 @@
+name: 💾 Create release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        type: choice
+        required: true
+        description: Are you making a major version (a breaking change for consumers), minor one (new feature) or a patch (fix, documentation or technical enhancement) ?
+        options:
+          - patch
+          - minor
+          - major
+
+    branches: [ master ]
+
+env:
+  NODE_VERSION_TARGET: '16'
+
+jobs:
+  release:
+    name: Create new release
+    runs-on: [ self-hosted, Linux, standard ]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION_TARGET }}
+
+      - name: NPM bump version
+        run: |
+          echo "Configuring git"
+          git config --global user.email "${{ secrets.GIT_COMMIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_COMMIT_USER_NAME }}"
+
+          echo "Getting previous tag..."
+          previous_tag=$(git describe --tags --abbrev=0)
+          echo "Previous tag found $previous_tag"
+
+          echo "Updating package version"
+          npm version --commit-hooks false  --git-tag-version false ${{ github.event.inputs.version_type }} 
+          new_tag="${$(git describe --tags):1}"
+          sed -i '/^sonar.projectVersion/d' sonar-project.properties
+          echo "sed -i '\$s/\$/\\\nsonar.projectVersion=$new_tag/' sonar-project.properties" | bash - 
+          git add -A
+          git commit -m "$new_tag"
+          echo "Pushing new commit"
+          git push origin master

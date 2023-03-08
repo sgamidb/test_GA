@@ -1,0 +1,19 @@
+{
+  "name": "test_ga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgamidb/test_GA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgamidb/test_GA/issues"
+  },
+  "homepage": "https://github.com/sgamidb/test_GA#readme"
+}
