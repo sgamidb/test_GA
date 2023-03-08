@@ -44,6 +44,7 @@ jobs:
           sed -i '/^sonar.projectVersion/d' sonar-project.properties
           echo "sed -i '\$s/\$/\\\nsonar.projectVersion=$new_tag/' sonar-project.properties" | bash - 
           git add -A
-          git tag v$new_version -m "$new_tag"
+          git commit -m "$new_version"
+          git tag v$new_version  
           echo "Pushing new commit"
           git push origin main
