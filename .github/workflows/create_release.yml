@@ -12,8 +12,6 @@ on:
           - minor
           - major
 
-    branches: [ master ]
-
 env:
   NODE_VERSION_TARGET: '16'
 
@@ -42,7 +40,8 @@ jobs:
 
           echo "Updating package version"
           npm version --commit-hooks false  --git-tag-version false ${{ github.event.inputs.version_type }} 
-          new_tag=${$(git describe --tags):1}
+          new_version=$(git describe --tags)
+          new_tag=${new_version:1}
           sed -i '/^sonar.projectVersion/d' sonar-project.properties
           echo "sed -i '\$s/\$/\\\nsonar.projectVersion=$new_tag/' sonar-project.properties" | bash - 
           git add -A
