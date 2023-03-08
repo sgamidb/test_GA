@@ -20,7 +20,7 @@ env:
 jobs:
   release:
     name: Create new release
-    runs-on: [ self-hosted, Linux, standard ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
