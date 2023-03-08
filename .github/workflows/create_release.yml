@@ -47,4 +47,4 @@ jobs:
           git add -A
           git commit -m "$new_tag"
           echo "Pushing new commit"
-          git push origin master
+          git push origin main
