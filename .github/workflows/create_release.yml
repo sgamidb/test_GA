@@ -30,6 +30,8 @@ jobs:
 
       - name: NPM bump version
         run: |
+          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
           echo "Configuring git"
           git config --global user.email "sebastien.gatineau@hotmail.fr"
           git config --global user.name "Sébastien GATINEAU"
