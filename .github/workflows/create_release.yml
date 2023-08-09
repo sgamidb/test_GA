@@ -49,4 +49,4 @@ jobs:
           git commit -m "$new_version"
           git tag v$new_version  
           echo "Pushing new commit"
-          git push origin main
+          git push origin $GITHUB_REF_NAME
