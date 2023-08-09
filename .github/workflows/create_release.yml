@@ -48,5 +48,5 @@ jobs:
           git add -A
           git commit -m "$new_version"
           git tag v$new_version  
-          echo "Pushing new commit"
+          echo "Pushing new commit to $GITHUB_REF_NAME"
           git push origin $GITHUB_REF_NAME
