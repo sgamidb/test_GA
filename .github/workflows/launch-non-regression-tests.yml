@@ -11,7 +11,7 @@ jobs:
       matrix:
         node-version: [ 16.x ]
     steps:
-      - uses: sgamidb/test_GA/.github/actions/nonRegressionTests@master
+      - uses: sgamidb/test_GA/.github/actions/nonRegressionTests@main
         with:
           github_pat: ${{ secrets.GITHUB_TOKEN }}
           owner: adeo
