@@ -1,0 +1,56 @@
+name: Non regression tests (TNR) action
+description: Trigger run of non regression tests on https://github.com/adeo/cdp-sao--runner-e2e/actions
+
+inputs:
+  github_pat:
+    description: Github personal access token with repo and workflow permissions.
+    required: true
+  owner:
+    description: The account owner of the repository where are defined the tests (adeo).
+    required: true
+  repo:
+    description: The name of the repository where are defined the tests (cdp-sao--runner-e2e).
+    required: true
+  workflow_id:
+    description: The ID of the workflow to run the tests. You can also pass the workflow file name (manual-all.yml).
+    required: true
+  ref:
+    description: The git reference for the workflow. The reference can be a branch or tag name (main).
+    required: true
+  team:
+    description: The team name (check this value with your QL).
+    required: true
+  perimeter:
+    description: The perimeter (check this value with your QL).
+    required: true
+  environment:
+    description: The environment (check this value with your QL).
+    required: true
+  testType:
+    description: Type of the test
+    required: true
+  tangramName:
+    description: The name of the tangram
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Trigger Non Regression Tests
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ inputs.github_pat }}
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: "${{ inputs.owner }}",
+            repo: "${{ inputs.repo }}",
+            workflow_id: "${{ inputs.workflow_id }}",
+            ref: "${{ inputs.ref }}",
+            inputs: {
+              team: "${{ inputs.team }}",
+              perimeter: "${{ inputs.perimeter }}",
+              environment: "${{ inputs.environment }}",
+              testType: "${{ inputs.testType }}",
+              tangramName: "${{ inputs.tangramName }}"
+            }
+          })

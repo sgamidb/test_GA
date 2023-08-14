@@ -1,0 +1,25 @@
+name: 🚀 Launch TNR - UAT1_LMFR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: [ self-hosted, Linux, standard ]
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - uses: sgamidb/test_GA/.github/actions/nonRegressionTests@master
+        with:
+          github_pat: ${{ secrets.GITHUB_TOKEN }}
+          owner: adeo
+          repo: cdp-sao--runner-e2e
+          workflow_id: manual-all.yml
+          ref: main
+          team: OfferRepo
+          perimeter: CI_CD_OfferCreation
+          environment: UAT1_LMFR
+          testType: API
+          tangramName: OFFER_REPOSITORY
