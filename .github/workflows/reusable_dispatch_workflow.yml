@@ -1,0 +1,14 @@
+name: 🚀 Deploy
+
+on:
+  repository_dispatch:
+    types: [ new-release ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+      steps: 
+        - name: "Hello world"
+          run: |
+            echo "Hello world ${{ github.event.client_payload.next_version }}"
+    
