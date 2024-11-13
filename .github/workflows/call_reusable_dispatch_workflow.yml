@@ -5,7 +5,7 @@ on:
 jobs:
   publish_release_on_slack_for_uat:
     name: Publish release on slack for UAT
-    uses: ./.github/workflows/reusable_and_dispatchable_workflow.yml
+    uses: ./.github/workflows/reusable_and_dispatchable_wf.yml
     with:
       env: 'prod'
       business_unit: 'HMBU'
