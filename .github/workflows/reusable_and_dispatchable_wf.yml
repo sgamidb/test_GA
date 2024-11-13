@@ -1,0 +1,37 @@
+name: Reusable and dispatch wf
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        description: 'Environment to check (e.g. sit, uat1, prep, prod)'
+        type: string
+      business_unit:
+        required: true
+        description: 'The business unit to check database as it is provided in vault (e.g. lmfr, lmit, lmes ...).'
+        type: string
+  workflow_dispatch:
+    inputs:
+      env:
+        required: true
+        description: 'Environment to check (e.g. sit, uat1, prep, prod)'
+        type: enum
+        options:
+          - sit
+          - uat1
+      business_unit:
+        required: true
+        description: 'The business unit to check database as it is provided in vault (e.g. lmfr, lmit, lmes ...).'
+        type: string
+
+
+jobs:
+  log:
+    name: log call
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          echo "${{ inputs.env }}"
+          echo "${{ inputs.business_unit }}"

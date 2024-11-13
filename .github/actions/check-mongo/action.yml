@@ -1,0 +1,13 @@
+name: Check mongo db indexes
+description: check collections and indexes
+
+
+inputs:
+    mongo_url:
+      description: "ahahah"
+      required: true
+
+runs:
+  using: 'node20'
+  main: 'index.js'
+
