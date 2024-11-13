@@ -16,7 +16,7 @@ on:
       env:
         required: true
         description: 'Environment to check (e.g. sit, uat1, prep, prod)'
-        type: enum
+        type: choice
         options:
           - sit
           - uat1
