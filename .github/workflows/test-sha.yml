@@ -19,7 +19,7 @@ jobs:
       - name: Checkout tag
         uses: actions/checkout@v4
         with:
-          ref: refs/tags/0.0.1
+          ref: refs/tags/${{ inputs.version_to_deploy }}
       
       - name: echo commit SHA
         run: |
