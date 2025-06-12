@@ -1,0 +1,26 @@
+name: Deploy Terraform release
+permissions:
+  contents: read
+  actions: write
+run-name: Deploy release - v${{ inputs.version_to_deploy }}
+on:
+  workflow_dispatch:
+    inputs:
+      version_to_deploy:
+        required: true
+        description: 'Version to deploy (e.g x.x.x, 4.3.1)'
+        type: string
+
+jobs:
+  create_plan:
+    name: Create Terraform plan for sit / uat / prep
+    runs-on: [ self-hosted, Linux, standard ]
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/0.0.1
+      
+      - name: echo commit SHA
+        run: |
+          echo "Request plan on ${{ github.sha }}"
