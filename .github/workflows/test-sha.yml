@@ -14,7 +14,7 @@ on:
 jobs:
   create_plan:
     name: Create Terraform plan for sit / uat / prep
-    runs-on: [ self-hosted, Linux, standard ]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout tag
         uses: actions/checkout@v4
